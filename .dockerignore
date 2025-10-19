@@ -1,0 +1,9 @@
+.git
+.venv
+__pycache__/
+*.pyc
+.env
+.DS_Store
+build/ or dist/
+docker-compose.yml
+Dockerfile
