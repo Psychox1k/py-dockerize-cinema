@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         self.stdout.write("Waiting for database...")
-        is_db_ready = None
+        is_db_ready = False
         while not is_db_ready:
             try:
                 connections["default"].cursor()
