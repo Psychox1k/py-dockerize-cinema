@@ -6,4 +6,3 @@ __pycache__/
 .DS_Store
 build/ or dist/
 docker-compose.yml
-Dockerfile

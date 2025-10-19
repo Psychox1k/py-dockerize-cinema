@@ -3,21 +3,24 @@ LABEL maintainer="zhyharevk777.official@gmail.com"
 
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR app/
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y bash
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p /files/media
 
-RUN adduser \
-    --disabled-password \
-    --no-create-home \
-    my_user
+RUN mkdir -p /files/media /files/static \
+    && adduser --disabled-password --no-create-home my_user \
+    && chown -R my_user:my_user /files/media /files/static \
+    && chmod -R 755 /files/media /files/static
 
-RUN chown -R my_user /files/media
-RUN chmod -R 755 /files/media
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 USER my_user
