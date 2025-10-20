@@ -4,5 +4,6 @@ __pycache__/
 *.pyc
 .env
 .DS_Store
-build/ or dist/
+build/
+dist/
 docker-compose.yml
